@@ -9,8 +9,16 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true, minlength: 6 },
         // Role determines what they can access
         role: { type: String, enum: ['student', 'teacher', 'principal'], default: 'student' },
+        // Sub-roles — multiple can be assigned (e.g., subject teacher + class teacher + vice-principal)
+        subRoles: { type: [String], enum: ['vice-principal', 'head-teacher', 'accountant', 'librarian', 'exam-coordinator', 'class-teacher', 'subject-teacher'], default: [] },
+        // Class this teacher is tutor/class-teacher of (only when 'class-teacher' is in subRoles)
+        classTutorOf: { type: String, default: '' }, // e.g., "8-A", "9-B"
+        // Department for teachers
+        department: { type: String, default: '' },
         // Only relevant for students — which class they are in
         classGrade: { type: Number, enum: [8, 9, 10], default: null },
+        section: { type: String, enum: ['A', 'B', 'C'], default: 'A' },
+        yearJoined: { type: Number, default: new Date().getFullYear() },
         // Photo URL (optional)
         photo: { type: String, default: '' },
         isActive: { type: Boolean, default: true },

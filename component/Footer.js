@@ -1,20 +1,25 @@
 'use client';
 // Footer — school information, quick links, contact details, Google Map
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
     const year = new Date().getFullYear();
+    const pathname = usePathname();
+
+    // If we are in the portal, do not render this footer
+    if (pathname && pathname.startsWith('/portal')) return null;
 
     return (
-        <footer style={{ background: 'var(--navy)' }} className="text-white">
+        <footer style={{ background: 'var(--navy)' }} className="text-white py-19 gap-5">
             {/* Main footer grid */}
-            <div className="container-custom py-12">
+            <div className="container-custom">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     {/* Column 1 — School info */}
                     <div>
                         <div className="flex items-center gap-3 mb-4">
-                            <div style={{ background: 'var(--crimson)' }} className="w-10 h-10 rounded-lg flex items-center justify-center font-black text-lg">M</div>
+                            <div style={{ background: 'var(--crimson)' }} className="w-10 h-10 rounded-lg flex items-center justify-center gap-4 font-black text-lg">M</div>
                             <div>
                                 <p className="font-bold leading-none">Martyrs&apos; Memorial School</p>
                                 <p className="text-blue-200 text-xs">Urlabari, Morang, Nepal</p>
@@ -28,7 +33,7 @@ export default function Footer() {
                     {/* Column 2 — Quick links */}
                     <div>
                         <h3 className="font-bold text-sm uppercase tracking-wider mb-4 text-blue-200">Quick Links</h3>
-                        <ul className="flex flex-col gap-2 text-sm text-blue-100">
+                        <ul className="flex flex-col text-sm text-blue-100">
                             {[
                                 { label: 'Home', href: '/' },
                                 { label: 'About Us', href: '/about' },
@@ -49,7 +54,7 @@ export default function Footer() {
                     {/* Column 3 — Contact */}
                     <div>
                         <h3 className="font-bold text-sm uppercase tracking-wider mb-4 text-blue-200">Contact Us</h3>
-                        <ul className="flex flex-col gap-3 text-sm text-blue-100">
+                        <ul className="flex flex-col mt-4 gap-4 text-sm text-blue-100">
                             <li className="flex gap-2">
                                 <span>📍</span>
                                 <span>Urlabari-5, Morang District, Koshi Province, Nepal</span>

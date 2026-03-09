@@ -36,13 +36,13 @@ const seed = async () => {
         { name: 'Hari Bahadur Rai', email: 'hari@school.edu.np', password, role: 'teacher' },
         { name: 'Kamala Adhikari', email: 'kamala@school.edu.np', password, role: 'teacher' },
         // Students class 8
-        { name: 'Raju Tamang', email: 'raju@student.edu.np', password, role: 'student', classGrade: 8 },
-        { name: 'Mina Gurung', email: 'mina@student.edu.np', password, role: 'student', classGrade: 8 },
+        { name: 'Raju Tamang', email: 'raju@student.edu.np', password, role: 'student', classGrade: 8, section: 'A', yearJoined: 2023 },
+        { name: 'Mina Gurung', email: 'mina@student.edu.np', password, role: 'student', classGrade: 8, section: 'B', yearJoined: 2023 },
         // Students class 9
-        { name: 'Bikash Shrestha', email: 'bikash@student.edu.np', password, role: 'student', classGrade: 9 },
-        { name: 'Priya Lama', email: 'priya@student.edu.np', password, role: 'student', classGrade: 9 },
+        { name: 'Bikash Shrestha', email: 'bikash@student.edu.np', password, role: 'student', classGrade: 9, section: 'A', yearJoined: 2022 },
+        { name: 'Priya Lama', email: 'priya@student.edu.np', password, role: 'student', classGrade: 9, section: 'A', yearJoined: 2022 },
         // Students class 10
-        { name: 'Sujan Poudel', email: 'sujan@student.edu.np', password, role: 'student', classGrade: 10 },
+        { name: 'Sujan Poudel', email: 'sujan@student.edu.np', password, role: 'student', classGrade: 10, section: 'C', yearJoined: 2021 },
     ]);
 
     console.log(`✅ Created ${users.length} users`);

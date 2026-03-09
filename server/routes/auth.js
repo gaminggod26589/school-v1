@@ -59,7 +59,7 @@ router.post(
 
             res.json({
                 token: generateToken(user._id),
-                user: { id: user._id, name: user.name, email: user.email, role: user.role, classGrade: user.classGrade },
+                user: { id: user._id, name: user.name, email: user.email, role: user.role, classGrade: user.classGrade, subRoles: user.subRoles || [] },
             });
         } catch (err) {
             res.status(500).json({ message: err.message });

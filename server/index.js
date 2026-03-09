@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -19,10 +20,21 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 // Parse incoming JSON request bodies
 app.use(express.json());
 
+// Serve uploaded files as static assets
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // ─── Activity Logger ──────────────────────────────────────────────────────────
 // Logs every authenticated request to MongoDB for principal audit view
 const activityLogger = require('./middleware/activityLogger');
 app.use(activityLogger);
+
+app.use((req, res, next) => {
+    const start = Date.now();
+    res.on('finish', () => {
+        console.log(`[REQ] ${req.method} ${req.originalUrl} - ${res.statusCode} - ${Date.now() - start}ms`);
+    });
+    next();
+});
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 app.use('/api/auth', require('./routes/auth'));
@@ -31,8 +43,12 @@ app.use('/api/teachers', require('./routes/teachers'));
 app.use('/api/attendance', require('./routes/attendance'));
 app.use('/api/library', require('./routes/library'));
 app.use('/api/notices', require('./routes/notices'));
-app.use('/api/logs', require('./routes/logs'));
 app.use('/api/dashboard', require('./routes/dashboard'));
+app.use('/api/leave', require('./routes/leave'));
+app.use('/api/schedule', require('./routes/schedule'));
+app.use('/api/videos', require('./routes/videos'));
+app.use('/api/staff', require('./routes/staff'));
+app.use('/api/upload', require('./routes/upload'));
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get('/', (req, res) => res.json({ message: "Martyrs' Memorial School API is running 🎓" }));

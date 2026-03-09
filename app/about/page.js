@@ -10,7 +10,7 @@ const stagger = { show: { transition: { staggerChildren: 0.1 } } };
 
 export default function AboutPage() {
     return (
-        <div className="pt-[88px]">
+        <div className="pt-[115px]">
 
             {/* Page Header */}
             <section style={{ background: 'var(--navy)' }} className="py-16 text-white text-center">

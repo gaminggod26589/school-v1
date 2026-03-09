@@ -5,9 +5,13 @@ const bookSchema = new mongoose.Schema(
     {
         title: { type: String, required: true, trim: true },
         author: { type: String, required: true, trim: true },
-        category: { type: String, default: 'General' }, // e.g., Science, Math, Fiction
+        category: { type: String, default: 'General' },
         totalCopies: { type: Number, default: 1 },
-        available: { type: Number, default: 1 }, // copies currently available
+        available: { type: Number, default: 1 },
+        coverImage: { type: String },
+        pdfUrl: { type: String },
+        classGrade: { type: Number },
+        uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         // Array of students who currently have the book
         borrowedBy: [
             {
@@ -17,6 +21,10 @@ const bookSchema = new mongoose.Schema(
             },
         ],
         coverImage: { type: String, default: '' },
+        pdfUrl: { type: String, default: '' },
+        classGrade: { type: Number, default: null }, // Null means available to all
+        uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        status: { type: String, enum: ['draft', 'published'], default: 'published' },
     },
     { timestamps: true }
 );

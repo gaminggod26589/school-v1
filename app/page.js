@@ -51,7 +51,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="pt-[88px]"> {/* push below fixed navbar */}
+    <div className="pt-[130px]"> {/* push below fixed navbar */}
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section

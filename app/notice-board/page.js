@@ -21,7 +21,7 @@ export default function NoticeBoardPage() {
     }, [filter]);
 
     return (
-        <div className="pt-[88px]">
+        <div className="pt-[115px]">
 
             {/* Header */}
             <section style={{ background: 'var(--navy)' }} className="py-16 text-white text-center">
